@@ -156,6 +156,53 @@ class LinkedList{
       // this.tail = currentNode;
     }
   }
+
+  //9.) Find the middle of the linked list
+  //    Would be faster if you have two pointers
+  //    Iterate 
+  middleOfList(){
+    // let currentNode = this.head;
+    let middleNode = this.head;
+    let fasterPointerNode = this.head;
+
+    while(fasterPointerNode.next){ 
+      //you want the second pointer to move faster first 
+      //if the 2nd pointer gets to the end of the list before the current one, 
+      // the current one should get to the center by that time.
+       middleNode = middleNode.next; 
+       fasterPointerNode = fasterPointerNode.next.next;
+    }
+    console.log(middleNode);
+    // return middle;
+  }
+
+   //ALT 9 function write: you could also use a counter
+   //the counter would update till the list size / 2
+  middleOfListCounter(){
+    let count = 0;
+    let middleNode = this.head;
+    let currNode = this.head;
+    let listSize = this.size;
+    console.log(listSize); //4
+
+    while(currNode){
+      currNode = currNode.next; //set point to next node
+      // count++; //update counter
+      console.log(count);
+      if (count <= listSize/2){ //if count is less than or eq to the list size/2 which is the mid position
+        count++;
+        //also check if count is even or odd. if  
+        (count % 2 === 0) ? (middleNode = currNode.next) : (middleNode = currNode);
+      }
+    }
+    console.log(middleNode);
+  }
+
+  //methods to be created: 
+  //removeValue( val ) instead of index, user enters in val
+  //findValue( val )
+  //removeFromHead(){}
+
 }
 
 
@@ -165,14 +212,17 @@ const ll = new LinkedList();
 ll.insertFront(100); //100
 ll.insertEnd(200); // 100, 200
 ll.insertFront(38); //38, 100, 200
-// ll.insertAnywhere(500,3); // 38, 100, 500, 200
+ll.insertAnywhere(500,1); // 38, 500, 100, 200
+ll.printList();
 
 console.log("- - - - - - -");
-// ll.getNodeIndex(2);
-// ll.removeNodeAt(3);
-ll.reverseList();
-// ll.clearList();
-// ll.printList();
-// ll.printSize();
+ ll.reverseList();
+ ll.middleOfList(); 
+// ll.middleOfListCounter();
+ ll.getNodeIndex(2);
+ ll.removeNodeAt(3);
+ ll.clearList();
+ ll.printList();
+ ll.printSize();
 
-// console.log(ll);
+ console.log(ll);
