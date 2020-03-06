@@ -1,2 +1,2 @@
 # js_practice
-Practice coding questions I tried doing in JS
+Hackerrank, Testdome, and Leetcode question practice
