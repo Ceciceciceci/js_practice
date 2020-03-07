@@ -68,8 +68,8 @@ var addTwoNumbers = function(l1, l2) {
         }
         
         //push the sum to the new list.
-         let newNode = new ListNode(sum);
-         l3.next = newNode;     
+         let newNode = new ListNode(sum); //make a new node with sum as the value
+         l3.next = newNode;
 
         // traverse the two original
         if(l1){

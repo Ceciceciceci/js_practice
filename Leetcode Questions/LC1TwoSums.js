@@ -60,6 +60,11 @@ var twoSum = function(nums, target){
     let finalArray=[]; //array to save the values
     for (let i = 0; i < nums.length; i++){ 
         for (let j = 0; j< nums.length; j++){
+            // const diff = target - nums[i];
+            // if (nums[j]=== diff){
+            //     return [i,j];
+            // } //shorter
+
             if( i != j ){ //if the index #i does not match the index #j
                 let sum = nums[i] + nums[j]; //add value of index i and value of index j
                 if (sum === target) { //check if it matches the target parameter
