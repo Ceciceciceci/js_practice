@@ -40,7 +40,7 @@ var romanToInt = function(s) {
     let result = 0; //final add
     
     for (let i = 0; i < s.length; i++){
-       let currRoman = romanMap[s[i]]; //grab the current 
+       let currRoman = romanMap[s[i]]; //grab the value of that key
        let nextRoman = romanMap[s[i+1]]; //save to check the next elem over
        
        //if currRoman # is < nextRoman #, subtract nextRoman from currRoman
