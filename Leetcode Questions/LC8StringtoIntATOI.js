@@ -44,62 +44,73 @@ Explanation: The number "-91283472332" is out of the range of a 32-bit signed in
  */
 var myAtoi = function(str) {
     
-    //discard any white space
-    //use regex 
-    const regExLetters = new RegExp(/[A-Za-z]/g);
-    const regExPlusMinus = new RegExp(/^[+-]?$/);
-    const regExSpecialChara = new RegExp(/[\s~`!@#$%\^&*=[\]\\';,/{}|\\":<>\?()\._]/g);
-    const regExDigit = new RegExp(/\d/);
-    strArray = str.replace(/\s/g, ''); //replace all the white space first
-        console.log("strArray: " + strArray);
-    
+    let newStr = str.trimLeft(); // 1.) cut all the white space in front
+    let foundFirstNum = false; //need this to find out if okay to move on other wise return 0;
+    let sign = undefined; //save for plus and minus at the end 
+    let i = 0;
+ 
+    // 2.) LOOP THROUGH THE STR
     let finalStr = '';
-    for (let i =0; i < strArray.length; i++){
-        //if detect a letter, stop; if detect a non digit 
+    for (i = 0; i < newStr.length; i++){
+        // 3.) DETECT IF NUMBER OR NOT FIRST 
         //take care of 0 case first
-        if (regExLetters.test(strArray[0]) || regExSpecialChara.test(strArray[0]) || (regExPlusMinus.test(strArray[0]) && !regExDigit.test(strArray[1])) ){
-            console.log("testing if first chara a letter or special chara or there is a second plus minus");
-            finalStr = 0;
-            break;
-        }
-
-        //test if there a plus or minus first, and that there is not a second one
-        if (regExPlusMinus.test(strArray[0])){
-            console.log("testing first charac is plus minus");
-            finalStr += strArray[0];
-        }
-        //if the digit is a 0 in the beginning skip it 
-        if (strArray[i]===0){
-            console.log("I see a 0;")
-            i++;
+        if (!foundFirstNum){
+             // 4.) CHECK IF PLUS/MINUS
+            if (newStr[i] == '+'){
+                console.log("found plus: " + newStr[i]);
+                sign = false;
+                foundFirstNum = true;
+                continue; //if you see a sign, skip adding it
+             } 
+            if (newStr[i] == '-'){
+                console.log("found minus: " + newStr[i]);
+                sign = true;
+                foundFirstNum = true;
+                continue; //if you see a sign, skip adding it
+            } 
+            // 5.) WE FOUND A DIGIT
+            if (parseInt(newStr[i]) >= 0){ // if a digit
+                console.log("found first digit: " + newStr[i]);
+                if(sign === undefined){ sign = false; }
+                foundFirstNum = true;
+                finalStr += newStr[i];
+                continue;
+            }
+            // 6.) IF NOT, RETURN 0
+            return 0; //if not a digit on the second index, return 0;
         } else {
-            //for letters and symbols in between
-            console.log("cuur i: " + strArray[i] + "  current finalStr: " + finalStr);
-            if (!regExLetters.test(strArray[i]) && !regExDigit.test(strArray[i]) && !regExPlusMinus.test(strArray[i])){
-                console.log("we've hit a symbol in the mid");
-                if (finalStr.length === 0) { return 0; }
-                break; //exit the for loop, do not add any more letters
-            } else if (regExDigit.test(strArray[i])) { //test if digit next
-                console.log("curr chara: "  + strArray[i]);
-                finalStr += strArray[i];
+            // 7.) START CHECKING THE NEXT DIGIT
+            if (parseInt(newStr[i]) >= 0){
+                finalStr += newStr[i];
+            } else {
+                // 8.) IF NOT DIGIT, WE OUT
+                break;
             }
         }
     }
     
-    //if the str is out of bounds
-    if (finalStr < -(Math.pow(2,31))){
-        return -Math.abs(Math.pow(2,31));
-    } 
-    //if the final str length is 0 or the str has a letter  final check
-    //set finalstr to 0;
-    if (finalStr.length === 0 || !regExDigit.test(finalStr)){
-        console.log("no digit was found");
-        finalStr = 0;
+    // 9.) change str to number
+    let finalNum = Number(finalStr);
+    // 10a.) if the str is out of bounds
+    if (!sign && finalNum > Math.pow(2,31)-1){
+        console.log("a");
+        return Math.pow(2,31) - 1;
     }
-    console.log("final: " + finalStr);
-    return finalStr;
+    if (sign && finalNum > Math.pow(2,31)-1){
+        console.log("b");
+        return -Math.pow(2,31);
+    }
     
+    // 10b.) check if negative or positive if not out of bounds
+    if (sign == true){
+        return -finalNum;
+    }
+    
+    return finalStr;
 };
 
+
+//TESTS:
 console.log(myAtoi("40"));
-// console.log(myAtoi("-0012.42"));
+console.log(myAtoi("   -42"));
+console.log(myAtoi("-0012.42"));
