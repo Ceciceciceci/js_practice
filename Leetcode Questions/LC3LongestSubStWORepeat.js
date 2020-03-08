@@ -28,32 +28,32 @@ Explanation: The answer is "wke", with the length of 3.
  */
 var lengthOfLongestSubstring = function(s) {
     //Base case
-    if (s.length === 0 || s.length === 1) {return s.length;}
+    if (s.length === 0 || s.length === 1){
+        return s.length;
+    }
     
-    let longestString = [];
-    //loop through string
-    for(let i = 0; i < s.length; i++){
-        //if the next string over does not match the curr string
-        if (s[i] !== s[i+1]){
-            console.log();
-            // if the chara doesn't exist in the array
-            if(!longestString.includes(s[i])){
-                longestString.push(s[i]); //push
-            } else {
-                longestString.length = 0; //set the length to 0 again to reset array; //start pushing again starting with that letter
-            }
-        } else { //for repeat like bbbbb
-            //if it doesn't exist yet in the array
-            if(!longestString.includes(s[i])){
-                longestString.push(s[i]); //push
-            }
-            break; //break out after.
+    //sliding window method
+    //INITIALIZE
+    //2 pointers, a new set, and a max to update max length
+    let pointer1 = 0;
+    let pointer2 = 0;
+    let strSet = new Set(); //add to this along the way
+    let max = 0;
+    while(pointer2 < s.length){
+        //if the 
+        if (!strSet.has(s.charAt(pointer2))){ 
+            strSet.add(s.charAt(pointer2)); //add the char value of pointer2 
+            //update max
+            max = Math.max(max, strSet.size); 
+            pointer2++; //shift the right pointer to the next letter
+        } else {
+            strSet.delete(s.charAt(pointer1)); //delete the value at pointer1 if found dup,
+            pointer1++; //shift the left pointer to the next letter
         }
     }
-    return longestString.length;
-    // return length
+    return max;
+    
 };
-
 
 console.log(lengthOfLongestSubstring("bbbbb")); //b
 console.log(lengthOfLongestSubstring("pwwkew")); //wke
