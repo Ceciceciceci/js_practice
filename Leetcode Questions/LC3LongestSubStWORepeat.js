@@ -40,14 +40,14 @@ var lengthOfLongestSubstring = function(s) {
     let strSet = new Set(); //add to this along the way
     let max = 0;
     while(pointer2 < s.length){
-        //if the 
+        //if the character at pointer2 doesn't exist in the set yet
         if (!strSet.has(s.charAt(pointer2))){ 
             strSet.add(s.charAt(pointer2)); //add the char value of pointer2 
             //update max
             max = Math.max(max, strSet.size); 
             pointer2++; //shift the right pointer to the next letter
         } else {
-            strSet.delete(s.charAt(pointer1)); //delete the value at pointer1 if found dup,
+            strSet.delete(s.charAt(pointer1)); //delete the value at pointer1 if the set already has, is dup
             pointer1++; //shift the left pointer to the next letter
         }
     }
