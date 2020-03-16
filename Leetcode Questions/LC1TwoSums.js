@@ -15,6 +15,21 @@
  * @return {number[]}
  */
 
+//diff version using javascript HOF map
+//try with a map this will save time
+var twoSum = function(nums, target) {
+    let nummap = new Map();
+    for (let i = 0; i< nums.length; i++){
+        let diff = target - nums[i]; //we will save this into the map
+        if(nummap.has(nums[i])){ //check if the current number exists in the map to match the difference
+            return [nummap.get(nums[i]), i];
+        } else {
+            nummap.set(diff, i);
+        }
+    }
+}
+
+
  //shorter version of ver 2
 //same time complexity in general
  var twoSum = function(nums, target) {

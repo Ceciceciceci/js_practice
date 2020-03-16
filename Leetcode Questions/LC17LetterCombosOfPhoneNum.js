@@ -37,7 +37,7 @@ var letterCombinations = function(digits) {
             //map the combinations string to each letter -> now combinations is ['a', 'b', 'c']
             temp = temp.concat(combinations.map(s => s + letter)); //concat it together to temp 'abc'
         }
-        combinations = temp; //set combinations to temp.
+        combinations = temp; //set combinations to temp so that combinations can map the existing lettesr to new ones
     }
 
     return combinations;
