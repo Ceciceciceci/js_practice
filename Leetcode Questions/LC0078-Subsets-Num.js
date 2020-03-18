@@ -13,24 +13,26 @@
  * @return {number[][]}
  */
 
-//doing it the same way as Combination Sums 
-//using a recursive function
+//doing it the same way as Combination Sums  #39
+//using a recursive function this will save time and shorten the amt of work done with mult inner for loop
 var subsets = function(nums) {
-    let result = [];
-    dfsCheck(nums, result);
+    let result = []; // you will use this to save the array combos
+    dfsCheck(nums, result); //outer call
     return result;   
 }
 
 let dfsCheck = (nums, result, combo=[], index = 0) => {
     result.push(combo);
-    
-     for(let i = index; i < nums.length; i++){
-         //by concatting, you are making a deep copy of combo each time.
-         dfsCheck(nums, result, combo.concat(nums[i]), i+1);
-     }
+    //the first combo is usually [] so just push it to the result
+
+    for(let i = index; i < nums.length; i++){
+        //by concatting, you are making a deep copy of combo each time.
+        dfsCheck(nums, result, combo.concat(nums[i]), i+1); //recursive function to keep concatting all the combinations
+    }
     console.log("result: " + result);
 }
 
+//Time complexity
 //how it would look like:
 /* [1,2,3] given
 result.push(combo);

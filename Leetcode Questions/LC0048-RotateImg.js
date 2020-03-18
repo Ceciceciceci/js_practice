@@ -32,6 +32,7 @@ var rotate = function(matrix) {
     
     //second swap but across, simultaneously closing in to the center
     //swap(matrix[i][j], matrix[i][mL - 1 - j])
+    //divide in second loop by two because you only need to swap till the center
     for (let i = 0; i < mL; i++){
         for(let j = 0; j < mL/2; j++){
             let temp = matrix[i][j];
