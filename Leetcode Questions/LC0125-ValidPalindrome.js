@@ -1,7 +1,7 @@
 /*
 125. Valid Palindrome  https://leetcode.com/problems/valid-palindrome/
 */
-
+// O(n) space made a new string, O(n) time 
 var isPalindrome = function(s) {
     //base case
 	if (s == " " || s == ''){ return true; }
@@ -12,6 +12,7 @@ var isPalindrome = function(s) {
     return (revStr === s) ? true : false;
 }
 
+// O(1) space, O(n) time 
 //using two pointers going to the middle
 var isPalindrome = function(s){
     //edit string 

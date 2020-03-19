@@ -33,17 +33,3 @@ var isPalindrome = function(head) {
     }
     return true;
 };
-
-//current on'///
-
-//interested on
-//rubyy on rails 
-// ember to react 
-// proj: a way to fill customer support req
-//    -> messaging
-//    -> self-service, billing team, buying experience
-//    -> not voicing, user interface subscription management, down grade flow, cancelation, 
-//    -> inter dependancies, ceiling and floor, shopping cart, team lead, 
-//    -> unit testing, r stack, automated unit test, javascript side, jasmine testing js, robust more than ruby
-        //  -> jasmine, next steps: two options: take home assignment (a week), a working front end js page but done in barebones js and html css, reimplement the same functonality, in your own JS framework, 3 hrs of your time,
-        //  -> one hr coding screen thr zoom, coderpad, much more code intensive
