@@ -38,3 +38,29 @@ var reverse = function(x) {
     }
     return num;
 };
+
+var reverse = function(x) {
+    let sign = Math.sign(x);
+    let revNum = (x*sign).toString().split('').reverse().join('');
+    let finalNum = Number(revNum);
+     
+    //check sign
+    if (sign === -1){
+        finalNum = finalNum*sign; 
+        if (finalNum < Math.pow(-2, 31)){ return 0;}
+    }
+    if (finalNum > (Math.pow(2, 31) - 1)){ return 0; }
+    return finalNum; 
+}; 
+
+//SHORTEST AND FASTEST VERSIONS
+var reverse = function(x) {
+    let sign = Math.sign(x);
+    let revNum = (x*sign).toString().split('').reverse().join('');
+    let finalNum = Number(revNum);
+    //check sign
+    if (sign === -1){
+        finalNum = finalNum*sign; 
+    }
+    return ((finalNum < Math.pow(-2, 31)) || (finalNum > (Math.pow(2, 31) - 1))) ? 0 : finalNum;
+}; 

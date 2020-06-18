@@ -61,9 +61,10 @@ var levelOrder = function(root) {
 var levelOrder = function(root) {
     var result = [];
     var currLvl = 0; //do by level
-    traverse(root, currLvl);
+    traverse(root, currLvl); //create a call bk function recursion
     return result;
 
+    // input the currlvl to keep track of what level is finished 
     function traverse(root, currLvl) {
         if (root === null) { return []; }
         else {

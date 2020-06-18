@@ -26,11 +26,14 @@ var isHappy = function(n) {
     if (n === 1) { return true; }
     
     let sqrSum = 0; //reset 
+
     for (let i = 0; i < numArray.length; i++){
         sqrSum += numArray[i]*numArray[i];
     }
+
     sqrSum = Number(sqrSum);
     counter++;
+    
     if (sqrSum === 1){
         return true;
     } else {

@@ -22,6 +22,29 @@ Explanation: The answer is "wke", with the length of 3.
              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 */
 
+/* So what do I think about this problem.
+because we want to find a solution with non repeating characters. I think I want to use a Set. A set 
+can only contain unique 1 of each elements. By doing this we can eliminate having to check against 
+in multiple for loops.  For this problem as well since we need to check for substrings we will 
+have to move along the original string. Because we need to find the longest, we have to update the max somehow.
+First you will two pointers initialized set to the beginning. they will be used to track what char has 
+been added to the set.
+For example pointer 2 will move first. if the chara is not in pointer 2 yet, add it to the set.
+then increment pointer 2 to the next letter. if it is, we will delete from the set from pointer 1's position.
+
+You will also need a new max variable to save to.
+also here a set variable.
+
+The boundaries that we need to put is when pointer 2 reaches the end of the string as we move.
+so while (pointer 2 is less than the str length){
+    if the character at pointer 2 is not in the set, add it and also UPDATE the max. 
+    if the character at pointer 2 is IN the SET. then you will take pointer 1 and update
+       accordingly by DELETING that character at pointer 1 from the SET. then update the
+       pointer1 by 1. 
+
+then return the max.
+}
+*/
 /**
  * @param {string} s
  * @return {number}
